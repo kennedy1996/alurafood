@@ -46,7 +46,32 @@ public class FormularioCadastroActivity extends AppCompatActivity {
 
     private void configuraCampoCPF() {
         TextInputLayout textInputCPF = findViewById(R.id.form_cadastro_campo_cpf);
-        adicionaValidacaoPadrao(textInputCPF);
+        EditText campoCPF = textInputCPF.getEditText();
+        campoCPF.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String cpf = campoCPF.getText().toString();
+                if(!hasFocus){
+                    if(!validaCampoObrigatorio(cpf, textInputCPF)) return;
+                    if(!validaCampoCom11Digitos(cpf, textInputCPF)) return;
+
+                    removeErro(textInputCPF);
+                }
+            }
+        });
+    }
+
+    private void removeErro(TextInputLayout textInputCPF) {
+        textInputCPF.setError(null);
+        textInputCPF.setErrorEnabled(false);
+    }
+
+    private boolean validaCampoCom11Digitos(String cpf, TextInputLayout textInputCPF) {
+        if(cpf.length() !=11){
+            textInputCPF.setError("O CPF precisa ter 11 dígitos!");
+            return false;}
+            return true;
+
     }
 
     private void configuraCampoNomeCompleto() {
@@ -61,17 +86,18 @@ public class FormularioCadastroActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 String texto = campo.getText().toString();
                 if(!hasFocus){
-                    validaCampoObrigatorio(texto, textInputCampo);
+                    if(!validaCampoObrigatorio(texto, textInputCampo)) return;
+                    removeErro(textInputCampo);
                 }
             }
         });
     }
 
-    private void validaCampoObrigatorio(String texto, TextInputLayout textInputCampo) {
+    private boolean validaCampoObrigatorio(String texto, TextInputLayout textInputCampo) {
         if(texto.isEmpty()){
             textInputCampo.setError("Campo Obrigatório");
+            return false;
         }
-        else { textInputCampo.setError(null);
-        textInputCampo.setErrorEnabled(false);}
-    }
+         return true;}
+
 }
