@@ -1,143 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.FormularioCadastroActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:drawableStart="@drawable/ic_formulario_cadastro_titulo_dados_pessoais"
-        android:drawableLeft="@drawable/ic_formulario_cadastro_titulo_dados_pessoais"
-        android:drawablePadding="10dp"
-        android:text="Dados Pessoais"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/form_cadastro_campo_nome_completo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="#00FFFFFF"
-            android:hint="Nome Completo" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/form_cadastro_campo_cpf"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/form_cadastro_campo_nome_completo"
-        tools:layout_editor_absoluteX="1dp">
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.FormularioCadastroActivity">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_2"
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/ic_formulario_cadastro_titulo_dados_pessoais"
+            android:drawableLeft="@drawable/ic_formulario_cadastro_titulo_dados_pessoais"
+            android:drawablePadding="10dp"
+            android:text="Dados Pessoais"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_cadastro_campo_nome_completo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#00FFFFFF"
+                android:hint="Nome Completo" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_cadastro_campo_cpf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="#00FFFFFF"
-            android:hint="CPF" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@+id/form_cadastro_campo_nome_completo"
+            tools:layout_editor_absoluteX="1dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/form_cadastro_campo_telefone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/form_cadastro_campo_cpf"
-        app:layout_constraintTop_toBottomOf="@+id/form_cadastro_campo_cpf">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#00FFFFFF"
+                android:hint="CPF" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_3"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_cadastro_campo_telefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="#00FFFFFF"
-            android:hint="Telefone com DDD" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/form_cadastro_campo_cpf"
+            app:layout_constraintTop_toBottomOf="@+id/form_cadastro_campo_cpf">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/form_cadastro_campo_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/form_cadastro_campo_telefone"
-        app:layout_constraintTop_toBottomOf="@+id/form_cadastro_campo_telefone">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#00FFFFFF"
+                android:hint="Telefone com DDD" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_4"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_cadastro_campo_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="#00FFFFFF"
-            android:hint="E-mail" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintEnd_toEndOf="@+id/form_cadastro_campo_telefone"
+            app:layout_constraintTop_toBottomOf="@+id/form_cadastro_campo_telefone">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/form_cadastro_campo_senha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/form_cadastro_campo_email"
-        app:layout_constraintTop_toBottomOf="@+id/form_cadastro_campo_email">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#00FFFFFF"
+                android:hint="E-mail" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_5"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_cadastro_campo_senha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="#00FFFFFF"
-            android:hint="Senha" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintEnd_toEndOf="@+id/form_cadastro_campo_email"
+            app:layout_constraintTop_toBottomOf="@+id/form_cadastro_campo_email">
 
-    <Button
-        android:id="@+id/formulario_cadastro_botao_cadastrar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="#F5635E5E"
-        android:text="Cadastrar"
-        android:textColor="#000000"
-        app:backgroundTint="#454A4646"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/form_cadastro_campo_senha">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#00FFFFFF"
+                android:hint="Senha" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    </Button>
+        <Button
+            android:id="@+id/formulario_cadastro_botao_cadastrar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#F5635E5E"
+            android:text="Cadastrar"
+            android:textColor="#000000"
+            app:backgroundTint="#454A4646"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form_cadastro_campo_senha">
+
+        </Button>
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
