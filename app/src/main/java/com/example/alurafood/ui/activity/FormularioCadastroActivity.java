@@ -9,6 +9,9 @@ import android.widget.EditText;
 import com.example.alurafood.R;
 import com.google.android.material.textfield.TextInputLayout;
 
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
+
 public class FormularioCadastroActivity extends AppCompatActivity {
 
     @Override
@@ -54,11 +57,24 @@ public class FormularioCadastroActivity extends AppCompatActivity {
                 if(!hasFocus){
                     if(!validaCampoObrigatorio(cpf, textInputCPF)) return;
                     if(!validaCampoCom11Digitos(cpf, textInputCPF)) return;
+                    if(!validaCalculoCPF(cpf, textInputCPF)) return;
 
                     removeErro(textInputCPF);
                 }
             }
         });
+    }
+
+    private boolean validaCalculoCPF(String cpf, TextInputLayout textInputCPF) {
+        try {
+            CPFValidator cpfValidator = new CPFValidator();
+            cpfValidator.assertValid(cpf);
+
+        } catch (InvalidStateException e) {
+            textInputCPF.setError("CPF Inválido poxa!");
+            return false;
+        }
+        return true;
     }
 
     private void removeErro(TextInputLayout textInputCPF) {
