@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.alurafood.R;
+import com.example.alurafood.ui.activity.formatter.FormatatelefoneComDdd;
 import com.example.alurafood.ui.activity.validator.ValidaCpf;
 import com.example.alurafood.ui.activity.validator.ValidaTelefoneComDDD;
 import com.example.alurafood.ui.activity.validator.ValidacaoPadrao;
@@ -44,16 +45,13 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         TextInputLayout textInputTelefone = findViewById(R.id.form_cadastro_campo_telefone);
         EditText campoTelefoneComDdd = textInputTelefone.getEditText();
         ValidaTelefoneComDDD validador = new ValidaTelefoneComDDD(textInputTelefone);
+        final FormatatelefoneComDdd formatador = new FormatatelefoneComDdd();
         campoTelefoneComDdd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 String telefoneComDdd = campoTelefoneComDdd.getText().toString();
                 if(hasFocus){
-                    String telefoneComDddSemFormatacao = telefoneComDdd
-                            .replace("(", "")
-                            .replace(")", "")
-                            .replace(" ", "")
-                            .replace("-", "");
+                    String telefoneComDddSemFormatacao = formatador.remove(telefoneComDdd);
                     campoTelefoneComDdd.setText(telefoneComDddSemFormatacao);
                 } else {
                     validador.estaValido();
@@ -61,6 +59,8 @@ public class FormularioCadastroActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void configuraCampoCPF() {
         TextInputLayout textInputCPF = findViewById(R.id.form_cadastro_campo_cpf);
         EditText campoCPF = textInputCPF.getEditText();
