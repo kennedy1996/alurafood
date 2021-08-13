@@ -12,6 +12,7 @@ import com.example.alurafood.ui.activity.formatter.FormatatelefoneComDdd;
 import com.example.alurafood.ui.activity.validator.ValidaCpf;
 import com.example.alurafood.ui.activity.validator.ValidaTelefoneComDDD;
 import com.example.alurafood.ui.activity.validator.ValidacaoPadrao;
+import com.example.alurafood.ui.activity.validator.ValidaEmail;
 import com.google.android.material.textfield.TextInputLayout;
 
 import br.com.caelum.stella.format.CPFFormatter;
@@ -39,7 +40,16 @@ public class FormularioCadastroActivity extends AppCompatActivity {
     }
     private void configuraCampoEmail() {
         TextInputLayout textInputEmail = findViewById(R.id.form_cadastro_campo_email);
-        adicionaValidacaoPadrao(textInputEmail);
+        EditText campoEmail = textInputEmail.getEditText();
+        ValidaEmail validador = new ValidaEmail(textInputEmail);
+        campoEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    validador.estaValido();
+                }
+            }
+        });
     }
     private void configuraCampoTelefoneComDDD() {
         TextInputLayout textInputTelefone = findViewById(R.id.form_cadastro_campo_telefone);
