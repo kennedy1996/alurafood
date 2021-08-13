@@ -38,7 +38,6 @@ public class ValidaCpf {
         if(!validaCampoCom11Digitos(cpf)) return false;
         if(!validaCalculoCPF(cpf)) return false;
 
-
         adicionaFormatacao(cpf);
         return true;
     }

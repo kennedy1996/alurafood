@@ -47,7 +47,15 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         campoTelefoneComDdd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
+                String telefoneComDdd = campoTelefoneComDdd.getText().toString();
+                if(hasFocus){
+                    String telefoneComDddSemFormatacao = telefoneComDdd
+                            .replace("(", "")
+                            .replace(")", "")
+                            .replace(" ", "")
+                            .replace("-", "");
+                    campoTelefoneComDdd.setText(telefoneComDddSemFormatacao);
+                } else {
                     validador.estaValido();
                 }
             }
@@ -62,7 +70,7 @@ public class FormularioCadastroActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
-                    adicionaFormatacao( formatador, campoCPF);
+                    removeFormatacao( formatador, campoCPF);
                 } else {
                     validador.estaValido();
                 }
@@ -70,7 +78,7 @@ public class FormularioCadastroActivity extends AppCompatActivity {
             }
         });
     }
-    private void adicionaFormatacao(CPFFormatter formatador, EditText campoCPF) {
+    private void removeFormatacao(CPFFormatter formatador, EditText campoCPF) {
         String cpf = campoCPF.getText().toString();
         try {
             String cpfSemFormato = formatador.unformat(cpf);
