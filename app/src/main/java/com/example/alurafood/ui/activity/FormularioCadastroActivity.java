@@ -40,24 +40,32 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         configuraCampoTelefoneComDDD();
         configuraCampoEmail();
         configuraCampoSenha();
+        configuraBotaoCadastrar();
+    }
+
+    private void configuraBotaoCadastrar() {
         Button botaoCadastrar = findViewById(R.id.formulario_cadastro_botao_cadastrar);
         botaoCadastrar.setOnClickListener(v -> {
-            boolean formularioEstaValido = true;
-            for (Validador validador : validadores
-                 ) {
-                if(!validador.estaValido()){
-                    formularioEstaValido=false;
-                }
-                if (formularioEstaValido) {
-
-                    Toast.makeText(FormularioCadastroActivity.this,
-                            "Cadastro Relizado com Sucesso!",
-                            Toast.LENGTH_LONG).show();
-
-                }
-
+            boolean formularioEstaValido = validaTodosCampos();
+            if (formularioEstaValido) {
+                cadastroRealizado();
             }
         });
+    }
+    private void cadastroRealizado() {
+        Toast.makeText(FormularioCadastroActivity.this,
+                "Cadastro Relizado com Sucesso!",
+                Toast.LENGTH_LONG).show();
+    }
+    private boolean validaTodosCampos() {
+        boolean formularioEstaValido = true;
+        for (Validador validador : validadores
+             ) {
+            if (!validador.estaValido()) {
+                formularioEstaValido = false;
+            }
+        }
+        return formularioEstaValido;
     }
     private void configuraCampoSenha() {
         TextInputLayout textInputSenha = findViewById(R.id.form_cadastro_campo_senha);
@@ -123,12 +131,10 @@ public class FormularioCadastroActivity extends AppCompatActivity {
             Log.e(ERRO_FORMATACAO_CPF, e.getMessage());
         }
     }
-
     private void configuraCampoNomeCompleto() {
         TextInputLayout textInputNomeCompleto = findViewById(R.id.form_cadastro_campo_nome_completo);
         adicionaValidacaoPadrao(textInputNomeCompleto);
     }
-
     private void adicionaValidacaoPadrao(TextInputLayout textInputCampo){
         EditText campo = textInputCampo.getEditText();
         ValidacaoPadrao validador = new ValidacaoPadrao(textInputCampo);
@@ -142,7 +148,4 @@ public class FormularioCadastroActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }
