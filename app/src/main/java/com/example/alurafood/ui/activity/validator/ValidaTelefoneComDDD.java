@@ -32,8 +32,9 @@ public class ValidaTelefoneComDDD implements Validador {
     public boolean estaValido(){
         if(!validacaoPadrao.estaValido()) return false;
         String telefoneComDdd = getTelefoneComDDD();
-        if(!validaEntreDezOuOnzeDigitos(telefoneComDdd)) return false;
-        adicionaFormatacao(telefoneComDdd);
+        String telefoneComDddSemFormatacao = formatador.remove(telefoneComDdd);
+        if(!validaEntreDezOuOnzeDigitos(telefoneComDddSemFormatacao)) return false;
+        adicionaFormatacao(telefoneComDddSemFormatacao);
         return true;
     }
 

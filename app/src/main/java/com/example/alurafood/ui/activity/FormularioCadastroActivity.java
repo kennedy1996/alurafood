@@ -41,17 +41,21 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         configuraCampoEmail();
         configuraCampoSenha();
         Button botaoCadastrar = findViewById(R.id.formulario_cadastro_botao_cadastrar);
-        botaoCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (Validador validador : validadores
-                     ) {
-                    validador.estaValido();
-                    
+        botaoCadastrar.setOnClickListener(v -> {
+            boolean formularioEstaValido = true;
+            for (Validador validador : validadores
+                 ) {
+                if(!validador.estaValido()){
+                    formularioEstaValido=false;
                 }
-                Toast.makeText(FormularioCadastroActivity.this,
-                        "Cadastro Relizado com Sucesso!",
-                        Toast.LENGTH_LONG).show();
+                if (formularioEstaValido) {
+
+                    Toast.makeText(FormularioCadastroActivity.this,
+                            "Cadastro Relizado com Sucesso!",
+                            Toast.LENGTH_LONG).show();
+
+                }
+
             }
         });
     }
