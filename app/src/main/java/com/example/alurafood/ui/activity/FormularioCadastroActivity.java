@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.alurafood.R;
 import com.example.alurafood.ui.activity.formatter.FormatatelefoneComDdd;
@@ -13,13 +15,18 @@ import com.example.alurafood.ui.activity.validator.ValidaCpf;
 import com.example.alurafood.ui.activity.validator.ValidaTelefoneComDDD;
 import com.example.alurafood.ui.activity.validator.ValidacaoPadrao;
 import com.example.alurafood.ui.activity.validator.ValidaEmail;
+import com.example.alurafood.ui.activity.validator.Validador;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.caelum.stella.format.CPFFormatter;
 
 public class FormularioCadastroActivity extends AppCompatActivity {
 
     public static final String ERRO_FORMATACAO_CPF = "erro formatação cpf";
+    private final List<Validador> validadores = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,20 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         configuraCampoTelefoneComDDD();
         configuraCampoEmail();
         configuraCampoSenha();
+        Button botaoCadastrar = findViewById(R.id.formulario_cadastro_botao_cadastrar);
+        botaoCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Validador validador : validadores
+                     ) {
+                    validador.estaValido();
+                    
+                }
+                Toast.makeText(FormularioCadastroActivity.this,
+                        "Cadastro Relizado com Sucesso!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
     private void configuraCampoSenha() {
         TextInputLayout textInputSenha = findViewById(R.id.form_cadastro_campo_senha);
@@ -42,6 +63,7 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         TextInputLayout textInputEmail = findViewById(R.id.form_cadastro_campo_email);
         EditText campoEmail = textInputEmail.getEditText();
         ValidaEmail validador = new ValidaEmail(textInputEmail);
+        validadores.add(validador);
         campoEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -56,6 +78,7 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         EditText campoTelefoneComDdd = textInputTelefone.getEditText();
         ValidaTelefoneComDDD validador = new ValidaTelefoneComDDD(textInputTelefone);
         final FormatatelefoneComDdd formatador = new FormatatelefoneComDdd();
+        validadores.add(validador);
         campoTelefoneComDdd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -69,13 +92,12 @@ public class FormularioCadastroActivity extends AppCompatActivity {
             }
         });
     }
-
-
     private void configuraCampoCPF() {
         TextInputLayout textInputCPF = findViewById(R.id.form_cadastro_campo_cpf);
         EditText campoCPF = textInputCPF.getEditText();
         CPFFormatter formatador = new CPFFormatter();
         ValidaCpf validador = new ValidaCpf(textInputCPF);
+        validadores.add(validador);
         campoCPF.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -106,6 +128,7 @@ public class FormularioCadastroActivity extends AppCompatActivity {
     private void adicionaValidacaoPadrao(TextInputLayout textInputCampo){
         EditText campo = textInputCampo.getEditText();
         ValidacaoPadrao validador = new ValidacaoPadrao(textInputCampo);
+        validadores.add(validador);
         campo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

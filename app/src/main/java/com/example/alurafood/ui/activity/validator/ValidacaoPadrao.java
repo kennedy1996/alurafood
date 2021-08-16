@@ -4,7 +4,7 @@ import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-public class ValidacaoPadrao {
+public class ValidacaoPadrao implements Validador {
 
     private final TextInputLayout textInputCampo;
     private final EditText campo;
@@ -22,6 +22,7 @@ public class ValidacaoPadrao {
         return true;
     }
 
+    @Override
     public boolean estaValido() {
         if(!validaCampoObrigatorio()) return false;
         removeErro();

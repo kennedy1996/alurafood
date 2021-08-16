@@ -8,7 +8,7 @@ import br.com.caelum.stella.format.CPFFormatter;
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.caelum.stella.validation.InvalidStateException;
 
-public class ValidaCpf {
+public class ValidaCpf implements Validador {
 
     private static final String CAMPO_OBRIGATORIO = "CPF Inválido poxa!";
     public static final String ERRO_CPF_ONZE_DIGITOS = "O CPF precisa ter 11 dígitos!";
@@ -32,6 +32,7 @@ public class ValidaCpf {
         }
         return true;
     }
+    @Override
     public boolean estaValido(){
         if(!validadorPadrao.estaValido()) return false;
         String cpf = getCpf();
